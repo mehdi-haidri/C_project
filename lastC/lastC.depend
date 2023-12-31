@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1704015390 source:c:\users\mehdi\downloads\new folder\lastc\main.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"administrature.h"
+	"clients.h"
+
+1704015100 c:\users\mehdi\downloads\new folder\lastc\administrature.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<conio.h>
+
+1704016903 c:\users\mehdi\downloads\new folder\lastc\clients.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<time.h>
+
