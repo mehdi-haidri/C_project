@@ -257,10 +257,6 @@ int ajouter(char matricule[TAILLE_MATRICULE];) {
     return;
 }
 
-
-
-
-
 void afficher() {
     FILE *fichier;
     fichier = fopen("informations.bin", "rb");
@@ -298,8 +294,6 @@ void afficher() {
     scanf("%d",&c);
             return;
 }
-
-
 
 void supprimer(char matriculeRecherche[TAILLE_MATRICULE]) {
     FILE *fichierTemp;
@@ -345,7 +339,6 @@ void supprimer(char matriculeRecherche[TAILLE_MATRICULE]) {
         printf("Aucune information trouvée pour le matricule %s.\n", matriculeRecherche);
     }
 }
-
 
 void modifier() {
     FILE *fichierTemp;
@@ -426,6 +419,7 @@ typedef struct clients2{
      int fj,fm,fa;
      int tj,tm,ta;
      float total;
+     char Nom_voiture[20];
 }clients2;
 int aficher_les_reservation(){
     system("cls");
@@ -446,6 +440,51 @@ int aficher_les_reservation(){
 
 }
 
+
+int check_voiture_status(){
+   system("cls");
+   clients2 cli;
+   int dd,mm,yy;
+   FILE *p = fopen("client.bin","rb");
+   if(p==NULL){
+    printf("erreur dans la fonction check_voiture_status");
+    exit(1);
+   }
+
+printf("entrer la date  jj/mm/yy :");
+scanf("%d/%d/%d",&dd,&mm,&yy);
+
+int chek=0;
+
+while(fread(&cli,sizeof(clients2),1,p)!=0){
+
+        if(cli.fj==dd &&cli.fm== mm &&cli.fa ==yy){
+            printf("   la voiture %s  matricule %s\n status : sortie\n\n",cli.Nom_voiture,cli.mtr);
+            chek++;
+            printf("##################################################################");
+        }
+
+        if(cli.tj==dd &&cli.tm== mm &&cli.ta ==yy){
+            printf("   la voiture %s  matricule %s\n status : entrer\n\n",cli.Nom_voiture,cli.mtr);
+            chek++;
+            printf("##################################################################");
+        }
+}
+
+fclose(p);
+if(chek==0){
+    printf("aucun changement  !!!! \n\n\n");
+    printf("press any key to return : ?");
+    scanf("%d",&chek);
+    return 0;
+}else{
+    printf("press any key to return : ?");
+    scanf("%d",&chek);
+    return 0;
+}
+
+
+}
 
 
 

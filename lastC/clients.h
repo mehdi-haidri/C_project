@@ -354,19 +354,29 @@ typedef struct clients{
      int fj,fm,fa;
      int tj,tm,ta;
      float total;
+     char Nom_voiture[20];
 }clients;
 void getInfo_clients( int fyear1, int fmonth1, int fday1,int tyear1, int tmonth1, int tday1,char mtr[],int prix_par_jour,float * totale_prix ){
     fflush(stdin);
     int n=0;
+    char Nom_voiture[20];
    clients cli;
    strcpy(cli.mtr,mtr);
   system("cls");
   FILE *p =fopen ("client.bin","ab");
-
-  if(p==NULL){
-    printf("erreur dans la fonction client");
+  FILE *p2= fopen ("voiture.txt","r");
+  if(p==NULL || p2==NULL){
+    printf("erreur dans la fonction get info clients");
     exit(1);
   }
+  while(fgets(Nom_voiture,20,p2)!=0){
+           if(strstr(Nom_voiture,mtr)!=NULL){
+               fgets(Nom_voiture,20,p2)!=0;
+                strcpy(cli.Nom_voiture,Nom_voiture);
+                break;
+           }
+  }
+  fclose(p2);
    cli.id_rsr=id_resirvaion();
     cli.prix_par_jour=prix_par_jour;
 
@@ -409,6 +419,7 @@ void modifier_date_resirvation(int anuler){
     char matricule[20];*/
     clients cli;
      char date[50], num[10];
+
      int n = 0,n2=0;
     int refr,chekrfr=0;
     FILE *pcli =fopen ("client.bin","rb");
@@ -665,6 +676,7 @@ void supprimer_resirvation(clients cli ){
   }
     system("cls");
     printf("Nom : %s\n\n",reservation.Nom_complet);
+    printf("Nom du voiture : %s\n\n",reservation.Nom_voiture);
     printf("CIN : %s\n\n",reservation.CIN);
     printf("from : %d/%d/%d \n\n",reservation.fj,reservation.fm,reservation.fa);
      printf("to : %d/%d/%d \n\n",reservation.tj,reservation.tm,reservation.ta);
@@ -680,9 +692,6 @@ void supprimer_resirvation(clients cli ){
 
 
  }
-
-
-
 
 
 

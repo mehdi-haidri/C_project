@@ -65,6 +65,7 @@ void administrature()
         printf("modifier_password :                      5 \n\n");
         printf("aficher_les_reservation :                6 \n\n");
         printf("anulle une reservation :                 7 \n\n");
+        printf("chek_voiture_status :                    8 \n\n");
         printf("exit :                                   0 \n\n");
         printf("press any key to return  :               ? \n\n");
 
@@ -93,6 +94,9 @@ void administrature()
             break;
         case 7:
             modifier_date_resirvation(1);
+            break;
+        case 8:
+            check_voiture_status();
             break;
         case 0:
             exit(1);
